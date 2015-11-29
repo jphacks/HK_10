@@ -1,5 +1,5 @@
 <?php
-//ini_set('display_errors', 0);
+ini_set('display_errors', 0);
 
 $API_TOKEN = "kKJK7YEpjJtUys1IQVn0DeKbaTPbEzSOgfS2TCGf";
 $SUB_DOMAIN = "mkh90";
@@ -31,35 +31,32 @@ $data = json_decode($contents, true);
 //担当者，作業者，タスクの数，
 //*タスクの数→終了のは省く
 //var_dump($data);
-$n=0;
 $task_data = array();
-for($i=0; $i<count($data['records']); $i++){
-
-	var_dump($task_data);
+for($i=0; $i<count($data["records"]); $i++){
 	
 //	echo $data["records"][$i]["Worker"]["value"][0]["name"];//作業者
 //	echo $data["records"][$i]["Worker"]["value"][0]["code"];//英字
 	if(count($task_data)!=0){
 		
 		for($j=0; $j<count($task_data); $j++){
-		var_dump($task_data);
-			if($task_data[$j]['code'] == $data["records"][$i]["Worker"]["value"][0]["code"]){
-				$num = array(array(2=>$task_data[$j]["task_num"]+1));
+			if($task_data[$j]["code"] == $data["records"][$i]["Worker"]["value"][0]["code"]){
+				$num = array(2=> $task_data[$j]["task_num"]+1);
+				echo $task_data[$j]["task_num"];
 				array_replace(array($task_data, $num));
 			}else{
-			$task_data = array_push($task_data,
-						array("worker" => $data["records"][$i]["Worker"]["value"][0]["name"],
-								"code" => $data["records"][$i]["Worker"]["value"][0]["code"], "task_num"=>1));
+				$task_data = array_push($task_data,
+				array("worker" => $data["records"][$i]["Worker"]["value"][0]["name"],
+						"code" => $data["records"][$i]["Worker"]["value"][0]["code"], 
+						"task_num" => 1));
 				}
 			}
-		
 	}else{
 		array_push($task_data,
 				array("worker" => $data["records"][$i]["Worker"]["value"][0]["name"],
-						"code" => $data["records"][$i]["Worker"]["value"][0]["code"], "task_num"=>1));
+						"code" => $data["records"][$i]["Worker"]["value"][0]["code"], 
+						"task_num" => 1));
 	}
 }
-		
 ?>
 
 <!DOCTYPE html>
