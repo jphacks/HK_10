@@ -37,27 +37,19 @@ for($i=0; $i<count($data['records']); $i++){
 
 	var_dump($task_data);
 	
-//	echo $data["records"]["’S“–Ò"]["value"]["name"];
-//	echo $data["records"][$i]["Assignees"]["value"][0]["name"];//’S“–Ò
-	echo "<br>";
-	echo $data["records"][$i]["Worker"]["value"][0]["name"];//ì‹ÆÒ
-	echo $data["records"][$i]["Worker"]["value"][0]["code"];//‰pš
-	echo "<br>";
-	echo "task_data: ".count($task_data);
-	echo "<br>";
-	if(count($task_data)!==0){
+//	echo $data["records"][$i]["Worker"]["value"][0]["name"];//ì‹ÆÒ
+//	echo $data["records"][$i]["Worker"]["value"][0]["code"];//‰pš
+	if(count($task_data)!=0){
 		
 		for($j=0; $j<count($task_data); $j++){
 		var_dump($task_data);
 			if($task_data[$j]['code'] == $data["records"][$i]["Worker"]["value"][0]["code"]){
 				$num = array(array(2=>$task_data[$j]["task_num"]+1));
 				array_replace(array($task_data, $num));
-				echo $task_data[$i]["task_num"]."times";
 			}else{
 			$task_data = array_push($task_data,
 						array("worker" => $data["records"][$i]["Worker"]["value"][0]["name"],
 								"code" => $data["records"][$i]["Worker"]["value"][0]["code"], "task_num"=>1));
-			echo $task_data[$j]["task_num"]."times";
 				}
 			}
 		
