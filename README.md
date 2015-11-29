@@ -19,8 +19,8 @@
 ## 開発技術
 ### 活用した技術
 #### API・データ
-*     ・JavaScript API
-*     ・kintone API
+*   JavaScript API
+*   kintone API
 
 #### フレームワーク・ライブラリ・モジュール
 *     ・jquery
